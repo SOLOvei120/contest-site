@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14110f" media="(prefers-color-scheme: dark)">
+  <title data-i18n="up.title">Photo Contest – Submit your photo</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%B7%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="i18n.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span data-i18n="brand">Photo Contest</span>
+      </a>
+      <nav class="nav">
+        <a href="/" aria-current="page" data-i18n="nav.upload">Upload</a>
+        <a href="/gallery.html" data-i18n="nav.gallery">Gallery</a>
+      </nav>
+      <button class="lang-btn" type="button" data-i18n-label="lang.label" aria-label="Switch language">RU</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-narrow">
+
+      <section id="formView">
+        <h1 data-i18n="up.h1">Submit your photo</h1>
+        <p class="lead" data-i18n="up.lead">Fill in the details and add your photo. It takes less than a minute.</p>
+
+        <noscript><div class="alert alert-error">This page needs JavaScript to upload photos.</div></noscript>
+
+        <form id="form" class="card" novalidate>
+          <fieldset id="fields" class="form">
+
+            <div class="field" data-field="nickname">
+              <label for="nickname"><span data-i18n="f.nickname">Nickname</span> <span class="req" aria-hidden="true">*</span></label>
+              <input id="nickname" type="text" autocomplete="nickname" maxlength="50" required>
+              <div class="error" role="alert"></div>
+            </div>
+
+            <div class="field" data-field="contest">
+              <label for="contest"><span data-i18n="f.contest">Contest / nomination</span> <span class="req" aria-hidden="true">*</span></label>
+              <input id="contest" type="text" autocomplete="off" maxlength="100" data-i18n-placeholder="f.contest.ph" placeholder="e.g. Nature, Portrait" required>
+              <div class="error" role="alert"></div>
+            </div>
+
+            <div class="field" data-field="caption">
+              <label for="caption"><span data-i18n="f.caption">Short caption</span> <span class="opt" data-i18n="f.optional">(optional)</span></label>
+              <textarea id="caption" maxlength="500"></textarea>
+              <div class="counter"><span id="capCount">0</span>/500</div>
+            </div>
+
+            <div class="field" data-field="photo">
+              <span class="label"><span data-i18n="f.photo">Photo</span> <span class="req" aria-hidden="true">*</span></span>
+
+              <label class="dropzone" id="drop" for="photoInput">
+                <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif">
+                <strong id="dropTitle" data-i18n="f.drop1">Tap or click to choose a photo</strong>
+                <span data-i18n="f.drop2">or drag it here · JPEG, PNG, WebP, HEIC</span>
+              </label>
+
+              <div class="preview" id="preview" hidden>
+                <img id="previewImg" alt="">
+                <div class="preview-meta">
+                  <span class="file-name" id="fileInfo"></span>
+                  <button type="button" class="btn btn-ghost btn-small" id="removeBtn" data-i18n="f.remove">Remove</button>
+                </div>
+              </div>
+
+              <div class="hint" data-i18n="f.maxhint">Up to 4 MB. Larger photos are resized automatically.</div>
+              <div class="error" role="alert"></div>
+            </div>
+
+            <div class="hp" aria-hidden="true">
+              <label>Website <input type="text" id="website" tabindex="-1" autocomplete="off"></label>
+            </div>
+
+            <div id="progressWrap" hidden>
+              <div class="progress-label"><span id="progressText"></span><span id="progressPct">0%</span></div>
+              <div class="progress" id="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="progress-bar" id="bar"></div>
+              </div>
+            </div>
+
+            <div class="alert alert-error" id="formAlert" role="alert" hidden></div>
+
+            <button class="btn btn-primary" id="submitBtn" type="submit">
+              <span class="spinner" id="spinner" hidden></span>
+              <span id="submitLabel" data-i18n="f.submit">Submit photo</span>
+            </button>
+
+          </fieldset>
+        </form>
+      </section>
+
+      <section id="thanksView" class="card thanks" hidden>
+        <div class="check" aria-hidden="true">✓</div>
+        <h1 id="thanksTitle" tabindex="-1" data-i18n="th.h1">Thank you!</h1>
+        <p class="lead" data-i18n="th.p">Your photo has been submitted. Good luck in the contest!</p>
+        <button class="btn btn-primary" id="againBtn" type="button" data-i18n="th.again">Submit another photo</button>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>
